@@ -61,10 +61,18 @@ const updateIssueFromDB = async (id: number, payload: IIssues)=>{
 
 }
 
+const deleteIssueFromDB = async (id : string)=>{
+    const result = await pool.query(`
+          DELETE FROM issues WHERE id=$1
+        `,[id])
+        return result
+}
+
 
 export const issuesService = {
     getAllIssuesFromDB,
     postIssueFromDB,
     updateIssueFromDB,
-    getIssuesFromDB
+    getIssuesFromDB,
+    deleteIssueFromDB
 }
